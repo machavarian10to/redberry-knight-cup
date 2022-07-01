@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
+/* font-family: 'Nunito', sans-serif;
+font-family: 'Open Sans', sans-serif; */
+
+/* GENERAL CLASSES */
+.double-screen {
+    display: flex;
+}
+
+.logo {
+    background-color: #7025FB;
+    padding: 30px 80px;
+    width: 923px;
+    height: 84px;
+}
+
+.chess-img{
+    width: 923px;
+    height: 1196px;
+}
+
+/* LANDING PAGE */
+.landing-wrapper {
+    background-color: #FD5334;
+    width: 997px;
+    height: 1280px;
+}
+
+.landing-texts{
+    margin: 265px 85px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.landing-texts h3{
+    color: white;
+    font-size: 80px;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.5;
+}
+
+.landing-texts span {
+    color: #212529;
+    font-size: 20px;
+    font-weight: bold;
+    vertical-align: 20px;
+}
+
+.landing-texts .link{
+    margin-top: 102px;
+    word-spacing: 5px;
+}
+
+.landing-texts a {
+    color: white;
+    background-color: #212529;
+    font-size: 20px;
+    text-transform: capitalize;
+    padding: 13px 24px;
+    border-radius: 8px;
+    border: 4px solid transparent;
+}
+
+.landing-texts a:hover{
+    border: 4px solid #C2A5F9;
+}
+
+.landing-texts a img{
+    vertical-align: middle;
+}
+
+
+
+
+
+
+
+/* ONBOARDING PAGE */
+.onboarding-text {
+    margin: 320px 230px;
+    text-align: center;
+}
+
+.onboarding-text h3{
+    font-family: 'Nunito', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    text-transform: capitalize;
+    margin-top: 20px;
+}
