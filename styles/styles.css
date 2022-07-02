@@ -1,7 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 /* font-family: 'Nunito', sans-serif;
 font-family: 'Open Sans', sans-serif; */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 
 /* GENERAL CLASSES */
 .double-screen {
@@ -59,16 +62,201 @@ font-family: 'Open Sans', sans-serif; */
     text-transform: capitalize;
     padding: 13px 24px;
     border-radius: 8px;
-    border: 4px solid transparent;
 }
 
 .landing-texts a:hover{
-    border: 4px solid #C2A5F9;
+    outline: 4px solid #C2A5F9;
 }
 
 .landing-texts a img{
     vertical-align: middle;
 }
+
+/* REGISTRATION PAGE */
+.quote-img{
+    position: relative;
+}
+
+.quote-texts{
+    color: #212529;
+    position: absolute;
+    top: 251px;
+    left: 132px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    font-style: italic;
+    line-height: 2;
+    text-transform: uppercase;
+}
+
+.quote-texts h4{
+    color: #E5E6E8;
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 24px;
+}
+
+.registration-wrapper h4{
+    color: #212529;
+    margin: 30px 48px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.divider {
+    width: 997px;
+    margin-top: 37px;
+    color: #B9B4C3;
+    opacity: 0.3;
+}
+
+.wizard {
+    margin-top: 74px;
+    margin-right: 530px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wizard .step-one div, .wizard .step-two div{
+    width: 40px;
+    height: 40px;
+    border: 1px solid #E5E6E8;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #212529;
+}
+
+.wizard .step-two div{
+    background-color: #E5E6E8;
+    color: #95939A;
+}
+
+.steps-connector {
+    width: 174px;
+    height: 1px;
+    background-color: #B9B4C3;
+    opacity: 30%;
+    margin-inline: 4px;
+}
+
+.infos{
+    display: flex;
+    margin-left: 48px;
+    margin-top: 8px;
+}
+
+.infos h5{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    margin-right: 77px;
+}  
+
+.personal-info-wrapper {
+    margin: 115px 48px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.personal-info-wrapper h2{
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.personal-info-wrapper h5{
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #95939A;
+}
+ 
+.form-wrapper form input:not(:first-child){
+    margin-top: 40px;
+}
+
+.form-wrapper form input{
+    border: none;
+    box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.125);
+    border-radius: 4px;
+    width: 775px;
+    height: 46px;
+    padding: 8px 16px;
+    margin-left: 48px;
+    font-size: 20px;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.form-wrapper form input::placeholder {
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-size: 20px;
+    color: #212529;
+}
+
+.form-wrapper form input:hover{
+    background-color: #F8F9FA;
+}
+
+.form-wrapper form input:focus{
+    background-color: #E9ECEF;
+    outline: none;
+}
+
+
+/* .someclass {
+    position: relative;
+}
+
+* .someclass::after {
+    position:absolute;
+    top: 15px;
+    left: 150px;
+    content: "*";
+    color:#ff0000
+} */
+
+.registration-btns{
+    display: flex;
+    margin: 88px 48px;
+}
+
+.registration-btns button{
+    cursor: pointer;
+    font-family: 'Open Sans';
+    font-size: 20px;
+    font-weight: 400;
+    border-radius: 8px;
+    padding: 13px, 24px;
+    height: 53px;
+}
+
+.back-btn{
+    background: none;
+    width: 93px;
+    border: 1px solid #212529;
+}
+
+.next-btn{
+    margin-left: 554px;
+    width: 128px;
+    background-color: #212529;
+    color: white;
+}
+
+.next-btn img{
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+
 
 
 
