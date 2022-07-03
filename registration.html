@@ -33,11 +33,11 @@
                 <hr class="divider" />
                 <div class="wizard">
                     <div class="step-one">
-                        <div>1</div>
+                        <div id="one">1</div>
                     </div>
                     <div class="steps-connector"></div>
                     <div class="step-two">
-                        <div>2</div>
+                        <div id="two">2</div>
                     </div>
                 </div>
 
@@ -53,18 +53,25 @@
 
                 <div class="form-wrapper">
                     <form>
-                        <input type="text" name="username" placeholder="Name" />
-                        <input type="email" name="email" placeholder="Email address" />
-                        <input type="number" name="phone" placeholder="Phone number" />
-                        <input type="date" name="birthday" placeholder="Date of birth" />
+                        <input id="user-name" type="text" name="username" placeholder="Name"  onkeydown="registrationStarted()"/>
+                        <span id="name-check"></span>
+                        <input id="user-email" type="email" name="email" placeholder="Email address" onkeydown="registrationStarted()"/>
+                        <span id="email-check"></span>
+                        <input id='user-phone' type="number" name="phone" placeholder="Phone number" onkeydown="registrationStarted()"/>
+                        <span id="phone-check"></span>
+                        <input id="user-birthday" type="text" name="birthday" placeholder="Date of birth"  onkeydown="registrationStarted()" onfocus="(this.type='date')"/>
+                        <span id="birthday-check"></span>
                     </form>
                 </div>
 
                 <div class="registration-btns">
                     <button class="back-btn" onclick="window.location.href='/index.html'">Back</button>
-                    <button class="next-btn" onclick="window.location.href='/experience.html'">Next <img src="./assets/arrow.png" alt="arrow"/></button>
+                    <button id="next-btn" class="next-btn" onclick="userInputsValidation()">Next <img src="./assets/arrow.png" alt="arrow"/></button>
                 </div>
             </div>
         </div>
+    </section>
+
+    <script src="./js/main.js"></script>
 </body>
 </html>
