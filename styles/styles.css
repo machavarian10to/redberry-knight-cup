@@ -20,14 +20,19 @@ input::-webkit-inner-spin-button {
 
 .chess-img{
     width: 923px;
-    height: 1196px;
+    height: 996px;
+}
+
+.chess-img img, .quote-img img{
+    width: 100%;
+    height: 100%;
 }
 
 /* LANDING PAGE */
 .landing-wrapper {
     background-color: #FD5334;
     width: 997px;
-    height: 1280px;
+    height: 1080px;
 }
 
 .landing-texts{
@@ -65,22 +70,24 @@ input::-webkit-inner-spin-button {
 }
 
 .landing-texts a:hover{
-    outline: 4px solid #C2A5F9;
+    outline: 4px solid rgba(194, 165, 249, 0.8);
 }
 
 .landing-texts a img{
     vertical-align: middle;
 }
 
+
 /* REGISTRATION PAGE */
 .quote-img{
+    height: 996px;
     position: relative;
 }
 
 .quote-texts{
     color: #212529;
     position: absolute;
-    top: 251px;
+    top: 200px;
     left: 132px;
     font-family: 'Nunito', sans-serif;
     font-size: 26px;
@@ -107,15 +114,90 @@ input::-webkit-inner-spin-button {
 }
 
 .divider {
-    width: 997px;
+    width: 100%;
     margin-top: 37px;
+    color: #B9B4C3;
+    opacity: 0.3;
+}
+
+.error-modal{
+    position: absolute;
+    right: 39px;
+    width: 350px;
+    height: 87px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#error-username{
+    top: 100px;
+    display: none;
+}
+
+#error-email{
+    top: 200px;
+    display: none;
+}
+
+#error-phone{
+    top: 300px;
+    display: none;
+}
+
+#error-date{
+    top: 400px;
+    display: none;
+}
+
+.invalid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invalid .header{
+    margin: 8px 0 0 8px;
+}
+
+.invalid .header span{
+    color: #DC3545;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: inherit;
+    vertical-align: top;
+    margin-top: 10px;
+}
+
+.invalid .header img{
+    margin-top: -5px;
+}
+
+.invalid .close-img{
+    margin-top: 14px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.error-modal h4{
+    font-size: 16px;
+    font-weight: 400;
+    color: #212529;
+    text-transform: inherit;
+    margin: 12px;
+}
+
+.error-modal .error-divider{
+    width: 100%;
     color: #B9B4C3;
     opacity: 0.3;
 }
 
 .wizard {
     margin-top: 74px;
-    margin-right: 530px;
+    margin-right: 395px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -223,6 +305,8 @@ input::-webkit-inner-spin-button {
     color:#ff0000
 } */
 
+
+
 .registration-btns{
     display: flex;
     margin: 88px 48px;
@@ -244,6 +328,11 @@ input::-webkit-inner-spin-button {
     border: 1px solid #212529;
 }
 
+.back-btn:hover{
+    background: rgba(185, 180, 196, 0.3);
+    border: 1px solid rgba(194, 165, 249, 0.8);
+}
+
 .next-btn{
     margin-left: 554px;
     width: 128px;
@@ -251,11 +340,14 @@ input::-webkit-inner-spin-button {
     color: white;
 }
 
+.next-btn:hover{
+    outline: 4px solid rgba(194, 165, 249, 0.8);
+}
+
 .next-btn img{
     vertical-align: middle;
     margin-left: 5px;
 }
-
 
 
 
