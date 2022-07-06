@@ -1,6 +1,3 @@
-const stepOne = document.getElementById('one');
-const stepTwo = document.getElementById('two');
-
 const userName = document.getElementById('user-name');
 const userEmail = document.getElementById('user-email');
 const userPhone = document.getElementById('user-phone');
@@ -21,53 +18,47 @@ const emailErrClose = document.getElementById("email-err-close");
 const phoneErrClose = document.getElementById("phone-err-close");
 const dateErrClose = document.getElementById("date-err-close");
 
-const knowledge = document.getElementById('knowledge-level');
-const character = document.getElementById('characters');
-// const experience = document.getElementById('experience')
-const championship = document.getElementsByName('redberry-championship');
-
-
-const knowledgeError = document.getElementById('knowledge-error');
-const characterError = document.getElementById('character-error')
-const experienceError = document.getElementById('experience-error')
-
 const nextButton = document.getElementById('next-btn');
-const doneButton = document.getElementById('done-btn')
 
-usernameErrClose.addEventListener('click', () => {
-    usernameError.style.display = 'none'
-})
+const stepOne = document.getElementById('one');
 
-emailErrClose.addEventListener('click', () => {
-    emailError.style.display = 'none'
-})
+const savedUsername = localStorage.getItem('name');
+const savedEmail = localStorage.getItem('email');
+const savedPhone = localStorage.getItem('phone');
+const savedBirthday = localStorage.getItem('date_of_birth');
 
-phoneErrClose.addEventListener('click', () => {
-    phoneError.style.display = 'none'
-})
+// set info to the form if user has already filled it before
+if(savedUsername) {
+    userName.value = savedUsername;
+}
+if(savedEmail) {
+    userEmail.value = savedEmail;
+}
+if(savedPhone) {
+    userPhone.value = savedPhone;
+}
+if(savedBirthday) {
+    userBirthday.value = savedBirthday;
+}
 
-dateErrClose.addEventListener('click', () => {
-    dateError.style.display = 'none'
-})
+// save info if user enters his data for the first time
+function usernameSaving() {
+    localStorage.setItem("name", userName.value);
+}
 
-https://chess-tournament-api.devtest.ge/images/nona.jpg
+function emailSaving() {
+    localStorage.setItem("email", userEmail.value);
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-    const dropdown = document.getElementById('characters');
+function phoneSaving() {
+    localStorage.setItem("phone", userPhone.value);
+}
 
-    fetch('https://chess-tournament-api.devtest.ge/api/grandmasters')
-    .then(res => res.json())
-    .then(characters => {
-        let options = '';
-        characters.forEach(character => {
-            options += `<option value='${character.name}'>${character.name}</option>`
-        });
-        options += `<option value='other'>Other</option>`
-        dropdown.innerHTML += options;
-    })
-    .catch(err => console.log(err))
-})
+function birthdaySaving() {
+    localStorage.setItem("date_of_birth", userBirthday.value);
+}
 
+// change steps wizard style if user starts editing his data
 function registrationStarted() {
     if(userName.value.length > 0 || userEmail.value.length > 0 || userPhone.value.length > 0 || userBirthday.value.length > 0) {
         stepOne.style.backgroundColor = '#E9FAF1';
@@ -78,16 +69,7 @@ function registrationStarted() {
     }
 }
 
-function registrationContinue() {
-    if(knowledge.value.length > 0 || character.value.length > 0){
-        stepTwo.style.backgroundColor = '#E9FAF1';
-        stepTwo.style.border = 'none';
-    }else{
-        stepTwo.style.backgroundColor = 'transparent';
-        stepTwo.style.border = '1px solid #E5E6E8';
-    }
-}
-
+// validate every registration form field after user clicks the next button
 function userInputsValidation() {
     if(nameValidation() && emailValidation() && phoneValidation() &&  birthdayValidation()){
         stepOne.innerHTML = "<img src='./assets/check-all.png'/>"
@@ -99,43 +81,9 @@ function userInputsValidation() {
     birthdayValidation();
 }
 
-function userExperiencesValidation() {
-    if(knowledgeValidation() && characterValidation() && experienceValidation()){
-        doneButton.onclick = window.location.href='/onboarding.html'
-    }
-    knowledgeValidation();
-    characterValidation();
-    experienceValidation();
-}
-
-function knowledgeValidation() {
-    if(knowledge.value === 'title'){
-        knowledgeError.style.display = 'block'
-        return false;
-    }
-    knowledgeError.style.display = 'none'
-    return true;
-}
-
-function characterValidation() {
-    if(character.value === 'title'){
-        characterError.style.display = 'block'
-        return false;
-    }
-    characterError.style.display = 'none'
-    return true;
-}
-
-function experienceValidation() {
-    if(!championship[0].checked && !championship[1].checked){
-        experienceError.style.display = 'block'
-        return false;
-    }
-    experienceError.style.display = 'none'
-    return true;
-}
-
 function nameValidation() {
+    localStorage.getItem("username");
+    localStorage.setItem("username", userName.value);
     if(userName.value.length < 2) {
         nameCheck.innerHTML = '';
         usernameError.style.display = 'block'
@@ -166,9 +114,9 @@ function emailValidation() {
 }
 
 function phoneValidation() {
-    if(userPhone.value.length < 9){
-        phoneCheck.innerHTML = ''
-        phoneError.style.display = 'block'
+    if(userPhone.value.length !== 9){
+        phoneCheck.innerHTML = '';
+        phoneError.style.display = 'block';
         userPhone.style.background = '#FFEFEF';
         userPhone.style.color = '#DC3545';
         return false
@@ -195,4 +143,22 @@ function birthdayValidation() {
     birthdayCheck.innerHTML = "<img src='./assets/check.png'/>";
     return true
 }
+
+
+// close each message boxes after click on X icon 
+usernameErrClose.addEventListener('click', () => {
+    usernameError.style.display = 'none'
+})
+
+emailErrClose.addEventListener('click', () => {
+    emailError.style.display = 'none'
+})
+
+phoneErrClose.addEventListener('click', () => {
+    phoneError.style.display = 'none'
+})
+
+dateErrClose.addEventListener('click', () => {
+    dateError.style.display = 'none'
+})
 
