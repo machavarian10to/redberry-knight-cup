@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
-/* font-family: 'Nunito', sans-serif;
-font-family: 'Open Sans', sans-serif; */
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -26,6 +25,14 @@ input::-webkit-inner-spin-button {
 .chess-img img, .quote-img img{
     width: 100%;
     height: 100%;
+}
+
+button {
+    transition: 0.15s all;
+}
+
+.required {
+    color: #DC3545;
 }
 
 /* LANDING PAGE */
@@ -348,6 +355,164 @@ input::-webkit-inner-spin-button {
     vertical-align: middle;
     margin-left: 5px;
 }
+
+
+/* EXPERIENCE PAGE */
+
+.quote-img .experience-quotes h4{
+    color: #093F68;
+    text-align: end;
+}
+
+.wizard .step-one .check-all, .wizard .experience-step-two div{
+    background-color: #E9FAF1;
+    border: none;
+}
+
+.wizard .experience-step-two div{
+    color: #212529;
+}
+
+#experience-error, #character-error, #championship-error{
+    display: none;
+}
+
+#experience-error, #character-error, #championship-error{
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-size: 20px;
+    color: #DC3545;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.experience-form-wrapper{
+    margin-left: 38px;
+}
+
+.dropdown-wrapper{
+    display: flex;
+    align-items: center;
+}
+
+.character-selector, .experience-selector{
+    width: 392px;
+}
+
+.character-selector{
+    margin-left: 23px;
+}
+
+#character-selectField, #experience-selectField{
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    border-radius: 4px;
+    background: #FFFFFF;
+    box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.125);
+    font-family: 'Open Sans';
+    font-size: 20px;
+    font-weight: 400;
+}
+
+#character-selectField img, #experience-selectField img{
+    transition: transform 0.5s;
+}
+
+#character-list, #experience-list{
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(185, 180, 196, 0.3);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-size: 20px;
+}
+
+#character-list {
+    height: 419px;
+}
+
+#experience-list{
+    height: 200px;
+}
+
+.character-options, .experience-options{
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+}
+
+.character-options{
+    height: 72px;
+    padding: 28px;
+    margin-top: 16px;
+}
+
+.experience-options{
+    height: 45px;
+    padding: 15px;
+    margin-top: 16px;
+}
+
+.character-options img{
+    width: 90px;
+    height: 72px;
+    border-radius: 4px;
+    position: absolute;
+    top: 2px;
+    right: 25px;
+}
+
+/* .total-characters{
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-size: 16px;
+    color: #817D7D;
+    margin: 16px 28px;
+} */
+
+.character-options:hover, .experience-options:hover{
+    background-color: #F7F7F9; 
+}
+
+.hide{
+    display: none;
+}
+
+.rotate {
+    transform: rotate(180deg)
+}
+
+#championship h4{
+    margin: 0;
+    margin-top: 88px;
+    font-family: 'Open Sans';
+    text-transform: inherit;
+    font-weight: 400;
+    font-size: 20px;
+    color: #212529;
+}
+
+#championship input{
+    margin-top: 27px;
+    cursor: pointer;
+}
+
+#championship label{
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-size: 16px;
+    color: #212529;
+}
+
+
 
 
 
