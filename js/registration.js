@@ -27,6 +27,11 @@ const savedEmail = localStorage.getItem('email');
 const savedPhone = localStorage.getItem('phone');
 const savedBirthday = localStorage.getItem('date_of_birth');
 
+if(localStorage){
+    stepOne.style.backgroundColor = '#E9FAF1';
+    stepOne.style.border = 'none';
+}
+
 // set info to the form if user has already filled it before
 if(savedUsername) {
     userName.value = savedUsername;
@@ -82,8 +87,6 @@ function userInputsValidation() {
 }
 
 function nameValidation() {
-    localStorage.getItem("username");
-    localStorage.setItem("username", userName.value);
     if(userName.value.length < 2) {
         nameCheck.innerHTML = '';
         usernameError.style.display = 'block'
@@ -99,7 +102,8 @@ function nameValidation() {
 }
 
 function emailValidation() {
-    if(!userEmail.value.includes('@redberry.ge')){
+    let pattern = /^[^ ]+@redberry.ge/
+    if(!userEmail.value.match(pattern)){
         emailCheck.innerHTML = '';
         emailError.style.display = 'block'
         userEmail.style.background = '#FFEFEF';

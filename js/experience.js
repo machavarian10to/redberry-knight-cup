@@ -1,135 +1,148 @@
-const stepTwo = document.getElementById('two');
+const experienceSelectField = document.getElementById('experience-selectField');
+const experienceSelectText = document.getElementById('experience-selectText');
+const experienceOptions = document.getElementsByClassName('experience-options');
+const experienceList = document.getElementById('experience-list');
 
-const doneButton = document.getElementById('done-btn')
+const characterSelectField = document.getElementById('character-selectField');
+const characterSelectText = document.getElementById('character-selectText');
+const characterOptions = document.getElementsByClassName('character-options');
+const characterList = document.getElementById('character-list');
 
-const knowledge = document.getElementById('knowledge-level');
-const dropdown = document.getElementById('characters');
-const character = document.getElementById('characters');
 const championship = document.getElementsByName('redberry-championship');
 
-const knowledgeError = document.getElementById('knowledge-error');
-const characterError = document.getElementById('character-error')
-const experienceError = document.getElementById('experience-error')
+const experienceError = document.getElementById('experience-error');
+const characterError = document.getElementById('character-error');
+const championshipError = document.getElementById('championship-error');
 
-const savedKnowledge = localStorage.getItem('experience_level');
-const savedExperience = localStorage.getItem('already_participated');
-const savedCharacter = localStorage.getItem('character');
+const experienceIsSaved = localStorage.getItem('experience_level');
+const characterIsSaved = localStorage.getItem('character');
+const participateIsSaved = localStorage.getItem('already_participated');
 
+const arrowIcon =  document.getElementById('arrowIcon');
 
-
-// get characters name from the server and set to the options in dropdown
+const doneButton = document.getElementById('done-btn');
+        
+// get user infos if he already filled the form
+if(experienceIsSaved) {
+    experienceSelectText.innerHTML = experienceIsSaved;
+}
+if(characterIsSaved){
+    characterSelectText.innerHTML = characterIsSaved;
+}
+// get grandmasters name and image from server and set it as options in dropdown
 fetch('https://chess-tournament-api.devtest.ge/api/grandmasters')
-.then(res => res.json())
-.then(characters => {
-    let options = '';
-    characters.forEach(character => {
-        options += `<option value='${character.name}'>${character.name}</option>`
-    });
-    options += `<option value='other'>Other</option>`
-    dropdown.innerHTML += options;
-})
-.catch(err => console.log(err))
+    .then(res => res.json())
+    .then(characters => {
+        let li = '<p class="total-characters">(Total 4)</p>';
+        characters.forEach(character => {
+            li += `<li class="character-options" data='${character.id}'><p>${character.name}</p><img src="https://chess-tournament-api.devtest.ge/${character.image}" /></li>`
+        });
+        characterList.innerHTML += li;
+    })
+    .catch(err => console.log(err))
 
-// let characters = [];
-
-// async function getCharacters() {
-//     return fetch('https://chess-tournament-api.devtest.ge/api/grandmasters')
-//     .then(res => res.json())
-//     .then(data => console.log(data))
-//     .catch(err => console.log(err))
-// }
-
-// const data = await getCharacters();
-
-
-// console.log(characters)
-// characters.forEach(element => {
-//     console.log(element)
-// });
-
-// get saved data if user has already filled form
-if(savedKnowledge) {
-    knowledge.value = savedKnowledge;
-}
-if(!savedExperience === null) {
-    championship.value = savedExperience;
-}
-if(savedCharacter){
-    character.value = savedCharacter;
+if(participateIsSaved){
+    if(participateIsSaved === 'true'){
+        championship[0].checked = true;
+    }else{
+        championship[1].checked = true;
+    }
 }
 
-// save user info if he fills form for the first time
-function knowledgeSaving() {
-    localStorage.setItem("experience_level", knowledge.value);
+// custom dropdown for experience options
+experienceSelectField.onclick = function() {
+    experienceList.classList.toggle('hide')
+    arrowIcon.classList.toggle('rotate')
+
+    for(option of experienceOptions){
+        option.onclick = function() {
+            experienceError.style.display = 'none'
+            experienceSelectText.innerHTML = this.textContent;
+            localStorage.setItem("experience_level", this.textContent);
+            experienceList.classList.toggle('hide');  
+            arrowIcon.classList.toggle('rotate')
+        }
+    }
 }
 
-function experienceSaving() {
-    let already_participated = false;
+// custom dropdown menu to choose character
+characterSelectField.onclick = function() {
+    characterList.classList.toggle('hide')
+    arrowIcon.classList.toggle('rotate')
+
+    for(option of characterOptions){
+        option.onclick = function() {
+            let id = this.getAttribute('data');
+            characterError.style.display = 'none';
+            characterSelectText.innerHTML = this.textContent;
+            localStorage.setItem("character", this.textContent);
+            localStorage.setItem("character_id", id);
+            characterList.classList.toggle('hide');  
+            arrowIcon.classList.toggle('rotate');
+        }
+    }
+}
+
+// get info if user has already participated in championship 
+function hasAlreadyParticipated() {
+    championshipError.style.display = 'none';
+
+    let already_participated;
     if(championship[0].checked){
         already_participated = true;
     }
-    localStorage.setItem("already_participated",  JSON.stringify(already_participated));
-}
-
-function characterSaving() {
-    localStorage.setItem("character", character.value)
-}
-
-
-https://chess-tournament-api.devtest.ge/images/nona.jpg
-
-// {
-//     "name": "Beth Harmon",
-//     "email": "beth@redberry.ge",
-//     "phone": "598125819",
-//     "date_of_birth": "10/20/1997",
-//     "experience_level": "beginner",
-//     "already_participated": true,
-//     "character_id": 2
-// }
-
-// get characters photo and set to options in a dropdown
-// document.addEventListener('DOMContentLoaded', () => {
-// })
-
-// change steps wizard style if user starts editing his data
-function registrationContinue() {
-    knowledgeSaving();
-    experienceSaving();
-    characterSaving();
-    if(knowledge.value.length > 0 || character.value.length > 0){
-        stepTwo.style.backgroundColor = '#E9FAF1';
-        stepTwo.style.border = 'none';
-    }else{
-        stepTwo.style.backgroundColor = 'transparent';
-        stepTwo.style.border = '1px solid #E5E6E8';
+    if(championship[1].checked){
+        already_participated = false
     }
+    localStorage.setItem('already_participated', already_participated)
 }
 
 
-// validate every form field in experience page after user clicks done button
-function userExperiencesValidation() {
-    if(knowledgeValidation() && characterValidation() && experienceValidation()){
+// validate every form field after the user clicks done button
+function userValidation() {
+    if(experienceIsValid() && characterIsValid() && participateIsValid()){
         // send data to the server;
-        // localStorage.clear(); 
+        fetch('https://chess-tournament-api.devtest.ge/api/register', {
+            method: 'POST',
+            body: JSON.stringify({
+                "name": localStorage.getItem('name'),
+                "email": localStorage.getItem('email'),
+                "phone": localStorage.getItem('phone'),
+                "date_of_birth": localStorage.getItem('date_of_birth'),
+                "experience_level": localStorage.getItem('experience_level').toLowerCase(),
+                "already_participated": JSON.parse(localStorage.getItem('already_participated')),
+                "character_id": localStorage.getItem('character_id')
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(function(response){
+            return console.log(response.json()) 
+        })
+        .then(function(data) {
+            console.log(data)
+        })
+
         doneButton.onclick = window.location.href='/onboarding.html'
+        localStorage.clear(); 
     }
-    knowledgeValidation();
-    characterValidation();
-    experienceValidation();
+    experienceIsValid();
+    characterIsValid();
+    participateIsValid();
 }
 
-function knowledgeValidation() {
-    if(knowledge.value === 'title'){
-        knowledgeError.style.display = 'block'
+function experienceIsValid() {
+    if(!localStorage.getItem('experience_level')){
+        experienceError.style.display = 'block';
         return false;
     }
-    knowledgeError.style.display = 'none'
+    experienceError.style.display = 'none';
     return true;
 }
 
-function characterValidation() {
-    if(character.value === 'title'){
+function characterIsValid() {
+    if(!localStorage.getItem('character_id')){
         characterError.style.display = 'block'
         return false;
     }
@@ -137,14 +150,11 @@ function characterValidation() {
     return true;
 }
 
-function experienceValidation() {
-    if(!championship[0].checked && !championship[1].checked){
-        experienceError.style.display = 'block'
+function participateIsValid() {
+    if(!localStorage.getItem('already_participated')){
+        championshipError.style.display = 'block'
         return false;
     }
-    experienceError.style.display = 'none'
+    championshipError.style.display = 'none'
     return true;
 }
-
-
-
