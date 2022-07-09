@@ -3,6 +3,11 @@
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  margin: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
 }
 
 /* GENERAL CLASSES */
@@ -10,7 +15,7 @@ input::-webkit-inner-spin-button {
     display: flex;
 }
 
-.logo {
+.logo { 
     background-color: #7025FB;
     padding: 30px 80px;
     width: 923px;
@@ -40,11 +45,11 @@ button {
     background-color: #FD5334;
     width: 997px;
     height: 1080px;
+    font-family: 'Nunito', sans-serif;
 }
 
 .landing-texts{
     margin: 265px 85px;
-    font-family: 'Nunito', sans-serif;
 }
 
 .landing-texts h3{
@@ -63,7 +68,7 @@ button {
 }
 
 .landing-texts .link{
-    margin-top: 102px;
+    margin-top: 100px;
     word-spacing: 5px;
 }
 
@@ -76,14 +81,13 @@ button {
     border-radius: 8px;
 }
 
+.landing-texts a img{
+    vertical-align: -7px;
+}
+
 .landing-texts a:hover{
     outline: 4px solid rgba(194, 165, 249, 0.8);
 }
-
-.landing-texts a img{
-    vertical-align: middle;
-}
-
 
 /* REGISTRATION PAGE */
 .quote-img{
@@ -114,14 +118,14 @@ button {
 .registration-wrapper h4{
     color: #212529;
     margin: 30px 48px;
-    font-family: 'Open Sans', sans-serif;
+    
     font-size: 16px;
     font-weight: 600;
     text-transform: capitalize;
 }
 
 .divider {
-    width: 100%;
+    width: 997px;
     margin-top: 37px;
     color: #B9B4C3;
     opacity: 0.3;
@@ -136,27 +140,27 @@ button {
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
     border-radius: 4px;
-    font-family: 'Open Sans', sans-serif;
+    
+}
+
+#error-username, #error-email, #error-phone, #error-date{
+    display: none;
 }
 
 #error-username{
     top: 100px;
-    display: none;
 }
 
 #error-email{
     top: 200px;
-    display: none;
 }
 
 #error-phone{
     top: 300px;
-    display: none;
 }
 
 #error-date{
     top: 400px;
-    display: none;
 }
 
 .invalid {
@@ -204,7 +208,7 @@ button {
 
 .wizard {
     margin-top: 74px;
-    margin-right: 395px;
+    margin-right: 525px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -218,7 +222,6 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     font-weight: bold;
     color: #212529;
@@ -244,14 +247,14 @@ button {
 }
 
 .infos h5{
-    font-family: 'Open Sans', sans-serif;
+    
     font-size: 16px;
     margin-right: 77px;
 }  
 
 .personal-info-wrapper {
     margin: 115px 48px;
-    font-family: 'Open Sans', sans-serif;
+    
 }
 
 .personal-info-wrapper h2{
@@ -266,7 +269,7 @@ button {
     color: #95939A;
 }
  
-.form-wrapper form input:not(:first-child){
+.form-wrapper form p:not(:first-child){
     margin-top: 40px;
 }
 
@@ -280,14 +283,46 @@ button {
     margin-left: 48px;
     font-size: 20px;
     cursor: pointer;
-    font-family: 'Open Sans', sans-serif;
 }
 
 .form-wrapper form input::placeholder {
-    font-family: 'Open Sans';
     font-weight: 400;
     font-size: 20px;
     color: #212529;
+}
+
+.username-required, .email-required,
+.phone-required, .birthday-required{
+    position: relative;
+}
+
+.username-required::after, .email-required::after,
+.phone-required::after, .birthday-required::after
+{
+    content: '*';
+    position: absolute;
+    color: #DC3545;
+}
+
+.username-required::after, .email-required::after,
+.phone-required::after, .birthday-required::after{
+    top: 15px;
+}
+
+.username-required::after{
+    left: 125px;
+}
+
+.email-required::after{
+    left: 205px;
+}
+
+.phone-required::after{
+    left: 215px;
+}
+
+.birthday-required::after{
+    left: 190px;
 }
 
 .form-wrapper form input:hover{
@@ -299,21 +334,6 @@ button {
     outline: none;
 }
 
-
-/* .someclass {
-    position: relative;
-}
-
-* .someclass::after {
-    position:absolute;
-    top: 15px;
-    left: 150px;
-    content: "*";
-    color:#ff0000
-} */
-
-
-
 .registration-btns{
     display: flex;
     margin: 88px 48px;
@@ -321,7 +341,6 @@ button {
 
 .registration-btns button{
     cursor: pointer;
-    font-family: 'Open Sans';
     font-size: 20px;
     font-weight: 400;
     border-radius: 8px;
@@ -378,12 +397,10 @@ button {
 }
 
 #experience-error, #character-error, #championship-error{
-    font-family: 'Open Sans';
     font-weight: 600;
     font-size: 20px;
     color: #DC3545;
     margin-top: 20px;
-    text-align: center;
 }
 
 
@@ -415,7 +432,6 @@ button {
     border-radius: 4px;
     background: #FFFFFF;
     box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.125);
-    font-family: 'Open Sans';
     font-size: 20px;
     font-weight: 400;
 }
@@ -425,14 +441,16 @@ button {
 }
 
 #character-list, #experience-list{
-    width: 100%;
+    position: absolute;
+    width: 392px;
     border-radius: 4px;
     overflow: hidden;
     border: 1px solid rgba(185, 180, 196, 0.3);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    font-family: 'Open Sans';
+    background-color: white;
     font-weight: 400;
     font-size: 20px;
+    z-index: 20;
 }
 
 #character-list {
@@ -457,7 +475,7 @@ button {
 
 .experience-options{
     height: 45px;
-    padding: 15px;
+    padding: 13px;
     margin-top: 16px;
 }
 
@@ -470,13 +488,12 @@ button {
     right: 25px;
 }
 
-/* .total-characters{
-    font-family: 'Open Sans';
+.total-characters{
     font-weight: 600;
     font-size: 16px;
     color: #817D7D;
     margin: 16px 28px;
-} */
+}
 
 .character-options:hover, .experience-options:hover{
     background-color: #F7F7F9; 
@@ -490,36 +507,27 @@ button {
     transform: rotate(180deg)
 }
 
-#championship h4{
+#participation h4{
     margin: 0;
     margin-top: 88px;
-    font-family: 'Open Sans';
     text-transform: inherit;
     font-weight: 400;
     font-size: 20px;
     color: #212529;
 }
 
-#championship input{
-    margin-top: 27px;
+#participation input{
+    margin-top: 25px;
+    width: 20px;
+    height: 18px;
     cursor: pointer;
 }
 
-#championship label{
-    font-family: 'Open Sans';
+#participation label{
     font-weight: 400;
     font-size: 16px;
     color: #212529;
 }
-
-
-
-
-
-
-
-
-
 
 /* ONBOARDING PAGE */
 .onboarding-text {
