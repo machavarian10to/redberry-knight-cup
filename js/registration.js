@@ -32,6 +32,8 @@ const emailRequired = document.getElementById('email');
 const phoneRequired = document.getElementById('phone');
 const birthdayRequired = document.getElementById('birthday');
 
+removeAsteriskIfNeeded();
+
 // asterisk remover if user types info
 usernameRequired.addEventListener('input', () => {
     usernameRequired.classList.remove('username-required');
@@ -49,7 +51,7 @@ birthdayRequired.addEventListener('input', () => {
     birthdayRequired.classList.remove('birthday-required');
 })
 
-// asterisk addition if input is not filled
+// // asterisk addition if input is not filled
 function addAsteriskIfNeeded() {
     if(userName.value == ''){
         usernameRequired.classList.add('username-required');
@@ -62,6 +64,21 @@ function addAsteriskIfNeeded() {
     }
     if(userBirthday.value == ''){
         birthdayRequired.classList.add('birthday-required');
+    }
+}
+
+function removeAsteriskIfNeeded() {
+    if(localStorage.getItem('name') != ''){
+        usernameRequired.classList.remove('username-required');
+    }
+    if(localStorage.getItem('email') != ''){
+        emailRequired.classList.remove('email-required');
+    }
+    if(localStorage.getItem('phone') != ''){
+        phoneRequired.classList.remove('phone-required');
+    }
+    if(localStorage.getItem('date_of_birth') != ''){
+        birthdayRequired.classList.remove('birthday-required');
     }
 }
 
