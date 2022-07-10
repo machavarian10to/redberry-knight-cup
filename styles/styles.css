@@ -291,6 +291,7 @@ button {
     color: #212529;
 }
 
+/* asterisk styling */
 .username-required, .email-required,
 .phone-required, .birthday-required{
     position: relative;

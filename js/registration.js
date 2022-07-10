@@ -22,29 +22,68 @@ const nextButton = document.getElementById('next-btn');
 
 const stepOne = document.getElementById('one');
 
-const savedUsername = localStorage.getItem('name');
-const savedEmail = localStorage.getItem('email');
-const savedPhone = localStorage.getItem('phone');
-const savedBirthday = localStorage.getItem('date_of_birth');
+const usernameIsSaved = localStorage.getItem('name');
+const emailIsSaved = localStorage.getItem('email');
+const phoneIsSaved = localStorage.getItem('phone');
+const birthdayIsSaved = localStorage.getItem('date_of_birth');
 
-if(localStorage){
+const usernameRequired = document.getElementById('username');
+const emailRequired = document.getElementById('email');
+const phoneRequired = document.getElementById('phone');
+const birthdayRequired = document.getElementById('birthday');
+
+// asterisk remover if user types info
+usernameRequired.addEventListener('input', () => {
+    usernameRequired.classList.remove('username-required');
+})
+
+emailRequired.addEventListener('input', () => {
+    emailRequired.classList.remove('email-required');
+})
+
+phoneRequired.addEventListener('input', () => {
+    phoneRequired.classList.remove('phone-required');
+})
+
+birthdayRequired.addEventListener('input', () => {
+    birthdayRequired.classList.remove('birthday-required');
+})
+
+// asterisk addition if input is not filled
+function addAsteriskIfNeeded() {
+    if(userName.value == ''){
+        usernameRequired.classList.add('username-required');
+    }
+    if(userEmail.value == ''){
+        emailRequired.classList.add('email-required');
+    }
+    if(userPhone.value == ''){
+        phoneRequired.classList.add('phone-required');
+    }
+    if(userBirthday.value == ''){
+        birthdayRequired.classList.add('birthday-required');
+    }
+}
+
+// set info to the form if user has already filled it before
+if(usernameIsSaved) {
+    userName.value = usernameIsSaved;
+}
+if(emailIsSaved) {
+    userEmail.value = emailIsSaved;
+}
+if(phoneIsSaved) {
+    userPhone.value = phoneIsSaved;
+}
+if(birthdayIsSaved) {
+    userBirthday.value = birthdayIsSaved;
+}
+
+if(userName.value.length > 0 || userEmail.value.length > 0 || userPhone.value.length > 0 || userBirthday.value.length > 0) {
     stepOne.style.backgroundColor = '#E9FAF1';
     stepOne.style.border = 'none';
 }
 
-// set info to the form if user has already filled it before
-if(savedUsername) {
-    userName.value = savedUsername;
-}
-if(savedEmail) {
-    userEmail.value = savedEmail;
-}
-if(savedPhone) {
-    userPhone.value = savedPhone;
-}
-if(savedBirthday) {
-    userBirthday.value = savedBirthday;
-}
 
 // save info if user enters his data for the first time
 function usernameSaving() {
@@ -76,17 +115,17 @@ function registrationStarted() {
 
 // validate every registration form field after user clicks the next button
 function userInputsValidation() {
-    if(nameValidation() && emailValidation() && phoneValidation() &&  birthdayValidation()){
+    if(nameIsValid() && emailIsValid() && phoneIsValid() &&  birthdayIsValid()){
         stepOne.innerHTML = "<img src='./assets/check-all.png'/>"
         nextButton.onclick = window.location.href='/experience.html'
     }
-    nameValidation();
-    emailValidation();
-    phoneValidation();
-    birthdayValidation();
+    nameIsValid();
+    emailIsValid();
+    phoneIsValid();
+    birthdayIsValid();
 }
 
-function nameValidation() {
+function nameIsValid() {
     if(userName.value.length < 2) {
         nameCheck.innerHTML = '';
         usernameError.style.display = 'block'
@@ -101,8 +140,9 @@ function nameValidation() {
     return true
 }
 
-function emailValidation() {
+function emailIsValid() {
     let pattern = /^[^ ]+@redberry.ge/
+
     if(!userEmail.value.match(pattern)){
         emailCheck.innerHTML = '';
         emailError.style.display = 'block'
@@ -117,7 +157,7 @@ function emailValidation() {
     return true
 }
 
-function phoneValidation() {
+function phoneIsValid() {
     if(userPhone.value.length !== 9){
         phoneCheck.innerHTML = '';
         phoneError.style.display = 'block';
@@ -133,7 +173,7 @@ function phoneValidation() {
 }
 
 
-function birthdayValidation() {
+function birthdayIsValid() {
     if(userBirthday.value.length === 0){
         birthdayCheck.innerHTML = ''
         dateError.style.display = 'block'

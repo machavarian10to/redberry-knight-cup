@@ -32,54 +32,6 @@
                 <h4>First step is done, continue to finish onboarding</h4>
                 <hr class="divider" />
 
-                <div class="error-modal" id="error-username">
-                    <div class="invalid">
-                        <div class="header">
-                            <img class="error-img" src="./assets/error.png" alt="error" />
-                            <span>Invalid name</span>
-                        </div>
-                        <img class="close-img" src="./assets/close.png" alt="close" id="username-err-close"/>
-                    </div>
-                    <hr class="error-divider" />
-                    <h4>Please enter valid user name</h4>
-                </div>
-
-                <div class="error-modal"  id="error-email">
-                    <div class="invalid">
-                        <div class="header">
-                            <img class="error-img" src="./assets/error.png" alt="error" />
-                            <span>Invalid email</span>
-                        </div>
-                        <img class="close-img" src="./assets/close.png" alt="close" id="email-err-close"/>
-                    </div>
-                    <hr class="error-divider" />
-                    <h4>Please enter valid email address</h4>
-                </div>
-
-                <div class="error-modal" id="error-phone">
-                    <div class="invalid">
-                        <div class="header">
-                            <img class="error-img" src="./assets/error.png" alt="error" />
-                            <span>Invalid phone</span>
-                        </div>
-                        <img class="close-img" src="./assets/close.png" alt="close" id="phone-err-close"/>
-                    </div>
-                    <hr class="error-divider" />
-                    <h4>Please enter valid phone number</h4>
-                </div>
-
-                <div class="error-modal" id="error-date">
-                    <div class="invalid">
-                        <div class="header">
-                            <img class="error-img" src="./assets/error.png" alt="error" />
-                            <span>Invalid date</span>
-                        </div>
-                        <img class="close-img" src="./assets/close.png" alt="close" id="date-err-close"/>
-                    </div>
-                    <hr class="error-divider" />
-                    <h4>Please enter valid birthday date</h4>
-                </div>
-
                 <div class="wizard">
                     <div class="step-one">
                         <div class="check-all"><img src="./assets/check-all.png" /></div>
@@ -102,42 +54,55 @@
 
                 <div class="experience-form-wrapper">
                     <form>
-                        <div style="display: flex;">
+                        <div class="dropdown-wrapper">
+                            <div class="experience-selector">
+                                <div id="experience-selectField">
+                                    <p id="experience-selectText">level of knowledge <span class="required">*</span></p>
+                                    <img id="experienceArrowIcon" src="./assets/vector.png">
+                                </div>
 
-                            <select id="knowledge-level" onchange="registrationContinue()">
-                                <option disabled selected value="title">level of knowledge</option>
-                                <option value="beginner">Beginner</option>
-                                <option value="intermediate">Intermediate</option>
-                                <option value="professional">Professional</option>
-                            </select>
-                            <p id="knowledge-error">This field is required!</p>
+                                <ul id="experience-list" class="hide">
+                                    <li class="experience-options">Beginner</li>
+                                    <li class="experience-options">Intermediate</li>
+                                    <li class="experience-options">Professional</li>
+                                </ul>
+                                <p id="experience-error">This field is required!</p>
+                            </div>
     
-                            <select id="characters" onchange="registrationContinue()">
-                                <option disabled selected value="title">Choose your character</option>
-                            </select>
-                            <p id="character-error">This field is required!</p>
+
+                            <div class="character-selector">
+                                <div id="character-selectField">
+                                    <p id="character-selectText">Choose your character <span class="required">*</span></p>
+                                    <img id="characterArrowIcon" src="./assets/vector.png">
+                                </div>
+
+                                <ul id="character-list" class="hide">
+                                    <!-- get info from server -->
+                                </ul>
+
+                                <p id="character-error">This field is required!</p>
+                            </div>
                         </div>
 
-                        <div id="experience">
-                            <h4>Have you participated in the Redberry Championship? *</h4>
+                        <div id="participation">
+                            <h4>Have you participated in the Redberry Championship? <span class="required">*</span></h4>
+                            <input type="radio" id="yes-radio" name="redberry-championship" value="true" onchange="hasAlreadyParticipated()"/>
                             <label for="yes-radio">Yes</label>
-                            <input type="radio" id="yes-radio" name="redberry-championship" value="yes" onchange="registrationContinue()" />
+                            <input type="radio" id="no-radio" name="redberry-championship" value="false" onchange="hasAlreadyParticipated()"/>
                             <label for="no-radio">No</label>
-                            <input type="radio" id="no-radio" name="redberry-championship" value="no" onchange="registrationContinue()" />
+                            <p id="championship-error"> This field is required!</p>
                         </div>
-                        <br />
-                        <p id="experience-error">This field is required!</p>
                     </form>
                 </div>
 
                 <div class="registration-btns">
-                    <button class="back-btn" onclick="window.location.href='/registration.html'">Back</button>
-                    <button id="done-btn" class="next-btn done-btn" onclick="userExperiencesValidation()">Done</button>
+                    <button class="back-btn" onclick="window.location.href='./registration.html'">Back</button>
+                    <button id="done-btn" class="next-btn done-btn" onclick="userValidation()">Done</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="./js/main.js"></script>
+    <script src="./js/experience.js"></script>
 </body>
 </html>

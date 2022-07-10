@@ -18,7 +18,8 @@ const experienceIsSaved = localStorage.getItem('experience_level');
 const characterIsSaved = localStorage.getItem('character');
 const participateIsSaved = localStorage.getItem('already_participated');
 
-const arrowIcon =  document.getElementById('arrowIcon');
+const characterArrowIcon =  document.getElementById('characterArrowIcon');
+const experienceArrowIcon =  document.getElementById('experienceArrowIcon');
 
 const doneButton = document.getElementById('done-btn');
         
@@ -52,7 +53,7 @@ if(participateIsSaved){
 // custom dropdown for experience options
 experienceSelectField.onclick = function() {
     experienceList.classList.toggle('hide')
-    arrowIcon.classList.toggle('rotate')
+    experienceArrowIcon.classList.toggle('rotate')
 
     for(option of experienceOptions){
         option.onclick = function() {
@@ -60,7 +61,7 @@ experienceSelectField.onclick = function() {
             experienceSelectText.innerHTML = this.textContent;
             localStorage.setItem("experience_level", this.textContent);
             experienceList.classList.toggle('hide');  
-            arrowIcon.classList.toggle('rotate')
+            experienceArrowIcon.classList.toggle('rotate')
         }
     }
 }
@@ -68,7 +69,7 @@ experienceSelectField.onclick = function() {
 // custom dropdown menu to choose character
 characterSelectField.onclick = function() {
     characterList.classList.toggle('hide')
-    arrowIcon.classList.toggle('rotate')
+    characterArrowIcon.classList.toggle('rotate')
 
     for(option of characterOptions){
         option.onclick = function() {
@@ -78,7 +79,7 @@ characterSelectField.onclick = function() {
             localStorage.setItem("character", this.textContent);
             localStorage.setItem("character_id", id);
             characterList.classList.toggle('hide');  
-            arrowIcon.classList.toggle('rotate');
+            characterArrowIcon.classList.toggle('rotate');
         }
     }
 }
@@ -100,6 +101,9 @@ function hasAlreadyParticipated() {
 
 // validate every form field after the user clicks done button
 function userValidation() {
+    experienceIsValid();
+    characterIsValid();
+    participateIsValid();
     if(experienceIsValid() && characterIsValid() && participateIsValid()){
         // send data to the server;
         fetch('https://chess-tournament-api.devtest.ge/api/register', {
@@ -111,25 +115,18 @@ function userValidation() {
                 "date_of_birth": localStorage.getItem('date_of_birth'),
                 "experience_level": localStorage.getItem('experience_level').toLowerCase(),
                 "already_participated": JSON.parse(localStorage.getItem('already_participated')),
-                "character_id": localStorage.getItem('character_id')
+                "character_id": localStorage.getItem('character_id'),
             }),
             headers: {
                 'Content-Type': 'application/json'
             }
         })
-        .then(function(response){
-            return console.log(response.json()) 
-        })
-        .then(function(data) {
-            console.log(data)
-        })
+        .then(res => res.json())
+        .then(data => console.log(data))
 
         doneButton.onclick = window.location.href='/onboarding.html'
         localStorage.clear(); 
     }
-    experienceIsValid();
-    characterIsValid();
-    participateIsValid();
 }
 
 function experienceIsValid() {

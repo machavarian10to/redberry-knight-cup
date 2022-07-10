@@ -32,49 +32,50 @@
                 <h4>Start creating your account</h4>
                 <hr class="divider" />
 
-                <div class="error-modal error-username">
+                <!-- error boxes -->
+                <div class="error-modal" id="error-username">
                     <div class="invalid">
                         <div class="header">
                             <img class="error-img" src="./assets/error.png" alt="error" />
                             <span>Invalid name</span>
                         </div>
-                        <img class="close-img" src="./assets/close.png" alt="close" />
+                        <img class="close-img" src="./assets/close.png" alt="close" id="username-err-close"/>
                     </div>
                     <hr class="error-divider" />
                     <h4>Please enter valid user name</h4>
                 </div>
 
-                <div class="error-modal error-email">
+                <div class="error-modal"  id="error-email">
                     <div class="invalid">
                         <div class="header">
                             <img class="error-img" src="./assets/error.png" alt="error" />
                             <span>Invalid email</span>
                         </div>
-                        <img class="close-img" src="./assets/close.png" alt="close" />
+                        <img class="close-img" src="./assets/close.png" alt="close" id="email-err-close"/>
                     </div>
                     <hr class="error-divider" />
                     <h4>Please enter valid email address</h4>
                 </div>
 
-                <div class="error-modal error-phone">
+                <div class="error-modal" id="error-phone">
                     <div class="invalid">
                         <div class="header">
                             <img class="error-img" src="./assets/error.png" alt="error" />
                             <span>Invalid phone</span>
                         </div>
-                        <img class="close-img" src="./assets/close.png" alt="close" />
+                        <img class="close-img" src="./assets/close.png" alt="close" id="phone-err-close"/>
                     </div>
                     <hr class="error-divider" />
                     <h4>Please enter valid phone number</h4>
                 </div>
 
-                <div class="error-modal error-date">
+                <div class="error-modal" id="error-date">
                     <div class="invalid">
                         <div class="header">
                             <img class="error-img" src="./assets/error.png" alt="error" />
                             <span>Invalid date</span>
                         </div>
-                        <img class="close-img" src="./assets/close.png" alt="close" />
+                        <img class="close-img" src="./assets/close.png" alt="close" id="date-err-close"/>
                     </div>
                     <hr class="error-divider" />
                     <h4>Please enter valid birthday date</h4>
@@ -102,14 +103,27 @@
 
                 <div class="form-wrapper">
                     <form>
-                        <input id="user-name" type="text" name="username" placeholder="Name"  onkeydown="registrationStarted()"/>
-                        <span id="name-check"></span>
-                        <input id="user-email" type="email" name="email" placeholder="Email address" onkeydown="registrationStarted()"/>
-                        <span id="email-check"></span>
-                        <input id='user-phone' type="number" name="phone" placeholder="Phone number" onkeydown="registrationStarted()"/>
-                        <span id="phone-check"></span>
-                        <input id="user-birthday" type="text" name="birthday" placeholder="Date of birth"  onkeydown="registrationStarted()" onfocus="(this.type='date')"/>
-                        <span id="birthday-check"></span>
+                        <p class="username-required" id="username" >
+                            <input id="user-name" type="text" name="username" placeholder="Name"  onkeydown="registrationStarted()" onchange="usernameSaving()" onblur="addAsteriskIfNeeded()"/>
+                            <span id="name-check"></span>
+                        </p>
+                        <br />
+                        <p class="email-required" id="email">
+                            <input id="user-email" type="email" name="email" placeholder="Email address" onkeydown="registrationStarted()" onchange="emailSaving()" onblur="addAsteriskIfNeeded()"/>
+                            <span id="email-check"></span>
+                        </p>
+                        <br />
+                        <p class="phone-required" id="phone">
+                            <input id='user-phone' type="number" name="phone" placeholder="Phone number" onkeydown="registrationStarted()" onchange="phoneSaving()" onblur="addAsteriskIfNeeded()"/>
+                            <span id="phone-check"></span>
+                        </p>
+                        <br />
+                        <p class="birthday-required" id="birthday">
+                            <input id="user-birthday" type="text" name="birthday" placeholder="Date of birth"  onkeydown="registrationStarted()" onfocus="(this.type='date')" onchange="birthdaySaving()" onblur="addAsteriskIfNeeded()"/>
+                            <span id="birthday-check"></span>
+                        </p>
+                        <br />
+                        
                     </form>
                 </div>
 
@@ -121,6 +135,6 @@
         </div>
     </section>
 
-    <script src="./js/main.js"></script>
+    <script src="./js/registration.js"></script>
 </body>
 </html>
